@@ -1,0 +1,382 @@
+:root {
+    --primary-color: #00ffff;
+    /* Cyan highlight for dark theme */
+    --secondary-color: #2c5364;
+    --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    --text-color: rgba(255, 255, 255, 0.9);
+    --heading-color: white;
+    --card-bg: rgba(30, 40, 50, 0.8);
+    /* Slightly transparent card */
+    --section-bg-dark: #1a1a1a;
+    /* Darker section bg */
+    --section-bg-light: #111;
+    /* Default dark section bg */
+    --shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] {
+    --primary-color: #007bff;
+    /* Blue highlight for light theme */
+    --secondary-color: #6c757d;
+    --bg-gradient: #f8f9fa;
+    /* Simple light background */
+    --text-color: #343a40;
+    --heading-color: #212529;
+    --card-bg: #ffffff;
+    --section-bg-dark: #e9ecef;
+    --section-bg-light: #f8f9fa;
+    /* Default light section bg */
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --card-hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color);
+    font-weight: 700;
+    /* Bolder headings */
+}
+
+.navbar {
+    transition: background-color 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.navbar-nav .nav-link {
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--primary-color);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: var(--heading-color);
+}
+
+.navbar-brand:hover {
+    color: var(--primary-color);
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--primary-color);
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    /* Account for navbar */
+    padding-bottom: 40px;
+    /* Required for animate.css - ensures elements are visible for animation */
+    overflow: hidden;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    /* Responsive font size */
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-text p {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+}
+
+.hero .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--section-bg-light);
+    /* Text color contrasts with primary */
+    font-weight: 500;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    /* Pill shape */
+    transition: all 0.3s ease;
+}
+
+.hero .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(var(--primary-color), 0.3);
+}
+
+/* Adjustments for light theme button text */
+[data-theme="light"] .hero .btn-primary {
+    color: white;
+}
+
+
+#3d-container {
+    width: 100%;
+    max-width: 500px;
+    /* Max size */
+    height: auto;
+    /* Maintain aspect ratio */
+    aspect-ratio: 1 / 1;
+    /* Ensure it's square */
+    margin-top: 2rem;
+    /* Spacing on mobile */
+}
+
+@media (min-width: 992px) {
+    #3d-container {
+        margin-top: 0;
+        max-width: 600px;
+        /* Slightly larger on desktop */
+    }
+}
+
+canvas {
+    display: block;
+    width: 100% !important;
+    /* Override default */
+    height: 100% !important;
+}
+
+.section {
+    padding: 6rem 1rem;
+    /* More vertical padding */
+}
+
+.section h2 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.divider {
+    width: 80px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 0 auto 4rem;
+    /* Centered, more bottom margin */
+    border-radius: 2px;
+}
+
+.bg-section-dark {
+    background-color: var(--section-bg-dark);
+}
+
+.bg-section-light {
+    background-color: var(--section-bg-light);
+}
+
+/* --- Card Styles (If you add cards later) --- */
+/*
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    height: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--card-hover-shadow);
+}
+ .card-body {
+    padding: 1.8rem;
+ }
+  .card-title {
+    color: var(--heading-color);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+   .card h6 {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+.project-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+     border-top-right-radius: 12px;
+     border-bottom: 1px solid var(--border-color);
+}
+*/
+/* --- End Card Styles --- */
+
+
+.skill-category h5 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    color: var(--heading-color);
+}
+
+.skill-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skill-list li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.skill-list strong {
+    color: var(--heading-color);
+    font-weight: 500;
+}
+
+.skill-level {
+    font-size: 0.9em;
+    color: var(--primary-color);
+    font-style: italic;
+}
+
+
+.contact-icons a {
+    font-size: 2.5rem;
+    margin: 0 1.5rem;
+    color: var(--text-color);
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    /* Allows transform */
+}
+
+.contact-icons a:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.experience-item,
+.education-item {
+    position: relative;
+    padding-left: 25px;
+    /* Space for potential timeline pseudo-element */
+    margin-bottom: 2.5rem;
+    border-left: 3px solid var(--border-color);
+    /* Timeline indicator */
+    padding-bottom: 1rem;
+    /* Spacing below item */
+}
+
+.experience-item:last-child,
+.education-item:last-child {
+    margin-bottom: 0;
+    border-left: 3px solid transparent;
+    /* No line for last item */
+}
+
+/* Optional: Add a dot on the timeline */
+.experience-item::before,
+.education-item::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    /* Adjust based on border-left width and desired position */
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    border: 3px solid var(--section-bg-light);
+    /* Match section background */
+    z-index: 1;
+}
+
+[data-theme="light"] .experience-item::before,
+[data-theme="light"] .education-item::before {
+    border: 3px solid var(--section-bg-light);
+}
+
+
+.experience-item h4,
+.education-item h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+    color: var(--heading-color);
+}
+
+.experience-item h6,
+.education-item p>strong {
+    /* Use strong for date/degree emphasis */
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.education-item p {
+    /* Standard text in education */
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    padding: 2rem 1rem;
+    background-color: var(--section-bg-dark);
+    color: var(--text-color);
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+}
+
+footer small {
+    font-size: 0.9rem;
+}
+
+/* Added for Text Justification */
+.justified-text {
+    text-align: justify;
+    hyphens: auto;
+    /* Optional: Helps with spacing in justified text */
+}
+
+/* Apply justification also to lead paragraph in about section */
+#about .lead {
+    text-align: justify;
+    hyphens: auto;
+}
+
+
+/* Add Animate.css dependency for hero */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
